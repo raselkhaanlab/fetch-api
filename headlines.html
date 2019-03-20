@@ -1,0 +1,144 @@
+<html>
+	<head>
+		<title>
+			Top news
+		</title>
+		<style>
+			#main-field{
+				width:86%;
+				margin:0 auto;
+				
+			}
+			.title{
+				 text-align:center;
+				  padding:5px;
+				 
+			}
+			.title:hover{
+				color:green;
+				 			}
+			.img-right{
+				max-width:70%;
+				padding:10px;
+				float:right;
+				margin-bottom:80px;
+				
+			}
+			.img-left{
+				max-width:70%;
+				padding:10px;
+				margin-bottom:80px;
+				float:left;
+				
+			}
+			.author{
+				text-align:center;
+				border-bottom:1px solid orange;
+
+			}
+			.desc{
+				width:100%;
+			    vertical-align:middle;
+				padding:5px;
+							}
+	 		 .clear{
+	 		 	clear:both;
+	 		 }
+	 		 h1{
+	 		 	margin:0;
+	 		 	text-align:center;
+	 		 	font-weight:1100;
+	 		 		color:white;
+	 		 	 background:orange;
+
+
+	 		 }
+	 		 h1:hover{
+	 		 	color:orange;
+	 		 	background:black;
+	 		 	border:1px solid orange;
+	 		 	ouline:1px solid black;
+	 		 	opacity:.5;
+	 		 }
+	 		 a{
+	 		 	background:green;
+	 		 	display:inline-block;
+	 		 	border-radius:5px;
+
+	 		 	padding:5px;
+	 		 	margin:2px ;
+	 		 	color:white;
+	 		 	text-decoration:none;
+	 		 }
+	 		 a:hover{
+	 		 	color:black;
+	 		 	background:orange;
+	 		 	text-decoration:underline;
+
+
+	 		 }
+
+		</style>
+	</head>
+	<body>
+		<div id='main-field'>
+			<h1> Top 10 news</h1>
+			
+			
+
+		</div>
+
+	</body>
+    <script src="jquery.js"></script>
+	<script>
+		 $(document).ready(
+		 	function(){
+
+		var url='https://newsapi.org/v2/top-headlines?country=us&apiKey=f0e4df1d8c164550b04841a98e4c2f4d';
+		fetch(url).
+		then((resp)=>resp.json()).
+		then(function(data){
+			 var field=document.getElementById('main');
+			
+			  var headlines= data.articles;
+			  for(i=0;i<headlines.length;i++){
+			  		if(i==10){
+			  			break;
+			  		}
+                    
+                    var title=headlines[i].title;
+                    var author=headlines[i].author;
+                    var desc=headlines[i].description;
+                    var imgUrl=headlines[i].urlToImage;
+                 
+                    var url=headlines[i].url;
+                    if(i%2==0){
+                    	var cls='img-left';
+
+                    }
+                    else{
+                    	var cls='img-right'
+                    }
+                    var img= "<img src='"+imgUrl+"' class="+cls+">";
+
+                    $('#main-field').append('<h3 class="title">'+"Heading-"+(i+1)+" :"+title+'</h3>');
+                    $('#main-field').append('<p class="author">'+"Author:"+author+'</p>');
+                     $("#main-field").append(img);
+                    $('#main-field').append('<p class="desc">'+desc+'</p>').append('(published: '+headlines[i].publishedAt+')').append("<a href='"+url+"'>Read more</a>");
+                    $('#main-field').append("<div class='clear'><div>");
+                    
+                    console.log(headlines[i]);
+                    
+
+			  }
+			 
+		}).catch(function(err){
+			console.log(err);
+		})
+
+
+
+		 	}
+		 	);
+	</script>
+</html>
