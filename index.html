@@ -52,17 +52,13 @@
 	 		 	text-align:center;
 	 		 	font-weight:1100;
 	 		 	font-size:70px;
-	 		 		color:white;
-	 		 	 background:orange;
+	 		 
 
 
 	 		 }
 	 		 h1:hover{
 	 		 	color:orange;
-	 		 	background:black;
-	 		 	border:1px solid orange;
-	 		 	ouline:1px solid black;
-	 		 	opacity:.5;
+	 		 	
 	 		 }
 	 		 a{
 	 		 	background:green;
@@ -83,17 +79,42 @@
 	 		 }
 
 		</style>
-	</head>
-	<body>
-		<div id='main-field'>
+		<!-- 
+<div id='main-field'>
+			div.
 			<h1> Top 10 news</h1>
 			
 			
 
 		</div>
+		 -->
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	</head>
+	<body>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="card">
+					<div class="card-header bg-primary text-light">
+						<h1 class="text-uppercase"> Top 10 news headlines</h1>
+					</div>
+					<div class="card-body">
+						<div class="card-text">
+							<div id='main-field'>
+							</div>
+							<div class="card-footer">
+								<p class="text-justify text-center"> @Md Rasel Khaan</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</body>
     <script src="jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
 	<script>
 		 $(document).ready(
 		 	function(){
@@ -125,10 +146,10 @@
                     }
                     var img= "<img src='"+imgUrl+"' class="+cls+">";
 
-                    $('#main-field').append('<h3 class="title">'+"Heading-"+(i+1)+" :"+title+'</h3>');
+                    $('#main-field').append('<h3 class="title  text-uppercase align-text-top text-dark">'+"<span class='text-danger'>Heading-"+(i+1)+ "</span>"+" :"+title+'</h3>');
                     $('#main-field').append('<p class="author">'+"Author:"+author+'</p>');
                      $("#main-field").append(img);
-                    $('#main-field').append('<p class="desc">'+desc+'</p>').append('(published: '+headlines[i].publishedAt+')').append("<a href='"+url+"'>Read more</a>");
+                    $('#main-field').append('<p class="desc">'+desc+'</p>').append('(published: '+headlines[i].publishedAt+')').append("<a href='"+url+"' target='_blank'>Read more</a>");
                     $('#main-field').append("<div class='clear'><div>");
                     
                     console.log(headlines[i]);
